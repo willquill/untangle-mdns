@@ -1,0 +1,11 @@
+---
+- name: Setup mDNS
+  hosts: untangle
+  remote_user: root
+  #gather_facts: no
+  vars:
+    architecture: amd64
+    avahi_daemon_version: 0.7-4+deb10u1
+    allow_interfaces: "eth1,eth1.14,eth1.200"
+  roles:
+    - untangle-mdns

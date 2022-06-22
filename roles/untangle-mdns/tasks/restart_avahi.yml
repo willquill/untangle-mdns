@@ -1,0 +1,6 @@
+---
+- name: Run systemctl restart avahi-daemon.service
+  ansible.builtin.shell:
+    cmd:
+      systemctl restart avahi-daemon.service
+    

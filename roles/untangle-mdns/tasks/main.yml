@@ -1,0 +1,9 @@
+---
+- name: Install mDNS Packages
+  import_tasks: install_mdns_packages.yml
+
+- name: Configure mDNS Packages
+  import_tasks: configure_mdns_packages.yml
+
+- name: Restart avahi-daemon
+  import_tasks: restart_avahi.yml
