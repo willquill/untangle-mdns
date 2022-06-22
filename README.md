@@ -8,9 +8,9 @@ Sourced from the manual instructions [here](https://forums.untangle.com/hacks/44
 
 What this playbook does:
 
-- Installs libavahi-core7 and avahi-daemon
+- Installs avahi-daemon with dependencies
 - Configures /etc/avahi/avahi-daemon.conf
-- Allows you to specify which interfaces can broadcast Bonjour
+- Allows you to specify which interfaces can broadcast Bonjour as Ansible variables
 
 ### Prepare SSH Keys and Config
 
