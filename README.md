@@ -10,7 +10,15 @@ What this playbook does:
 
 - Installs avahi-daemon with dependencies
 - Configures /etc/avahi/avahi-daemon.conf
-- Allows you to specify which interfaces can broadcast Bonjour as Ansible variables
+- Installs libnss-mdns for hostname resolution
+- Installs [avahi-utils](https://command-not-found.com/avahi-browse) to let you use `avahi-browse` for troubleshooting
+- Variables in `untangle-mdns.yml` allow you to specify which interfaces can broadcast Bonjour as Ansible variables
+
+Outcome of playbook:
+
+- So far, I have tested this by having my iPhone and my AppleTV on different vlans/subnets, routed through the Untangle box. I can use AirPlay to send the signal from my iPhone to the AppleTV.
+
+**Important: You must also allow port 5353 on protocol UDP between the subnets used by the interfaces you specified in the playbook. This information is located on [this page](https://wiki.debian.org/Avahi).**
 
 ### Prepare SSH Keys and Config
 
@@ -77,6 +85,14 @@ Update `untangle-mdns.yml` with your own variable values.
 ### Run the Playbook
 
 `ansible-playbook -i hosts -l untanglenodes untangle-mdns.yml`
+
+### Troubleshooting
+
+Get a list of services and hosts on the network: `avahi-browse -art | less`
+
+Get a list of all service names known to avahi-daemon: `avahi-browse --dump-db`
+
+Display service types of services discovered on the network: `avahi-browse -kat`
 
 ## License
 

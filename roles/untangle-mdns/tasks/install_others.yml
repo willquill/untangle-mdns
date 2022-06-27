@@ -1,0 +1,8 @@
+---
+- name: Install libnss-mdns for hostname resolution
+  ansible.builtin.shell:
+    cmd: apt update && apt install --no-install-recommends libnss-mdns -y -q
+
+- name: Install avahi-utils for Avahi troubleshooting
+  ansible.builtin.shell:
+    cmd: apt update && apt install --no-install-recommends avahi-utils -y -q

@@ -3,4 +3,3 @@
   ansible.builtin.shell:
     cmd:
       systemctl restart avahi-daemon.service
-    
