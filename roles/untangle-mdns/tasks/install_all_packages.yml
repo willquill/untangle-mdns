@@ -12,12 +12,10 @@
       echo "deb-src http://ftp.us.debian.org/debian buster main contrib" >> /etc/apt/sources.list
       echo "deb http://ftp.us.debian.org/debian buster-updates main contrib" >> /etc/apt/sources.list
       echo "deb-src http://ftp.us.debian.org/debian buster-updates main contrib" >> /etc/apt/sources.list      
-  when: avahi_daemon_check_deb.rc == 1  
 
 - name: Install python3-apt to use "ansible.builtin.apt"
   ansible.builtin.shell:
     cmd: apt update && apt install --no-install-recommends python3-apt -y -q
-  when: avahi_daemon_check_deb.rc == 1  
 
 - name: Install the build dependencies for package "avahi-daemon"
   ansible.builtin.apt:
@@ -28,9 +26,26 @@
 - name: Install avahi-daemon
   ansible.builtin.apt:
     deb: http://ftp.us.debian.org/debian/pool/main/a/avahi/avahi-daemon_{{ avahi_daemon_version }}_{{ architecture }}.deb
-  when: avahi_daemon_check_deb.rc == 1  
+  when: avahi_daemon_check_deb.rc == 1
+
+- name: Install libnss-mdns build dependencies
+  ansible.builtin.apt:
+    pkg: libnss-mdns
+    state: build-dep
+
+- name: Install libnss-mdns for hostname resolution
+  ansible.builtin.apt:
+    pkg: libnss-mdns
+
+- name: Install avahi-utils build dependencies
+  ansible.builtin.apt:
+    pkg: avahi-utils
+    state: build-dep
+
+- name: Install avahi-utils for Avahi troubleshooting
+  ansible.builtin.apt:
+    pkg: avahi-utils
 
 - name: Remove buster from /etc/apt/sources.list
   ansible.builtin.shell:
     cmd: sed -i '/main contrib/d' /etc/apt/sources.list
-  when: avahi_daemon_check_deb.rc == 1  

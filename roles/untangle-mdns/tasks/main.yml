@@ -1,12 +1,9 @@
 ---
-- name: Install mDNS Packages
-  import_tasks: install_mdns_packages.yml
+- name: Install avahi-daemon, libnss-mdns, avahi-utils
+  import_tasks: install_all_packages.yml
 
-- name: Configure mDNS Packages
-  import_tasks: configure_mdns_packages.yml
-
-- name: Install libnss-mdns and avahi-utils
-  import_tasks: install_others.yml
+- name: Configure avahi-daemon
+  import_tasks: configure_avahi_daemon.yml
 
 - name: Restart avahi-daemon
-  import_tasks: restart_avahi.yml
+  import_tasks: restart_avahi_daemon.yml
