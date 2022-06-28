@@ -1,0 +1,5 @@
+---
+mdns_packages:
+  - avahi-daemon
+  - avahi-utils
+  - libnss-mdns

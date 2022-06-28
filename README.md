@@ -84,9 +84,11 @@ Update `untangle-mdns.yml` with your own variable values.
 
 ### Run the Playbook
 
-`ansible-playbook -i hosts -l untanglenodes untangle-mdns.yml`
+`ansible-playbook untangle-mdns.yml -i hosts`
 
 ### Troubleshooting
+
+Get Ansible facts for hosts: `ansible all -i hosts -m setup > facts.json`
 
 Get a list of services and hosts on the network: `avahi-browse -art | less`
 

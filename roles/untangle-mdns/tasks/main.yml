@@ -1,8 +1,14 @@
 ---
-- name: Install avahi-daemon, libnss-mdns, avahi-utils
-  import_tasks: install_all_packages.yml
+- name: Add the OS specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_os_family }}.yml"
 
-- name: Configure avahi-daemon
+- name: Install mDNS packages
+  import_tasks: install_packages.yml
+
+- name: Execute task "Configure avahi-daemon"
   import_tasks: configure_avahi_daemon.yml
 
 - name: Restart avahi-daemon
