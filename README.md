@@ -4,7 +4,9 @@ Ansible playbook for adding mDNS to your Untangle box
 
 ## Overview
 
-Sourced from the manual instructions [here](https://forums.untangle.com/hacks/44147-mdns-external.html#post249705).
+Sourced from the manual instructions in [this post](https://forums.edge.arista.com/forum/community-contribution/hacks/36649-mdns-external?p=365613#post365613) from [this thread](https://forums.edge.arista.com/forum/community-contribution/hacks/36649-mdns-external).
+
+There is some discussion of my repository [here](https://forums.edge.arista.com/forum/community-contribution/hacks/37868-i-wrote-an-ansible-playbook-to-get-mdns-working-with-untangle).
 
 What this playbook does:
 
